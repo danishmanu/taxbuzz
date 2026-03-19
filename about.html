@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - TaxBuzz Business Solution</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        @import url('https://fonts.cdnfonts.com/css/geometrix');
+
+        :root {
+            --primary-color: #102544;
+            --secondary-color: #FFCF3F;
+            --text-dark: #1a1a1a;
+            --text-gray: #666666;
+            --bg-light: #f8f9fa;
+            --white: #ffffff;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Geometrix', 'DM Sans', sans-serif;
+            color: var(--text-dark);
+            background: var(--white);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Geometrix', 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: var(--text-dark);
+            line-height: 1.3;
+        }
+
+        /* Navbar */
+        .navbar {
+            padding: 1.5rem 0;
+            background: var(--white);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+        }
+        .navbar-brand {
+            font-family: 'Geometrix', sans-serif;
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: var(--primary-color) !important;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .navbar-logo { width: 45px; height: 45px; object-fit: cover; border-radius: 8px; }
+        .nav-link {
+            color: var(--text-dark) !important;
+            font-weight: 500;
+            font-size: 0.95rem;
+            margin: 0 0.75rem;
+            padding: 0.5rem 0 !important;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0;
+            width: 0; height: 2px;
+            background: var(--secondary-color);
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover, .nav-link.active { color: var(--secondary-color) !important; }
+        .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+        .btn-primary-custom {
+            background: var(--secondary-color);
+            color: var(--primary-color);
+            padding: 0.75rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            border: 2px solid var(--secondary-color);
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn-primary-custom:hover {
+            background: transparent;
+            color: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        /* Breadcrumb */
+        .breadcrumb-section {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #1a3a5f 100%);
+            padding: 80px 0 50px;
+            position: relative;
+            overflow: hidden;
+        }
+        .breadcrumb-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: rgba(255, 207, 63, 0.06);
+            border-radius: 50%;
+        }
+        .breadcrumb-section::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -5%;
+            width: 300px;
+            height: 300px;
+            background: rgba(255, 207, 63, 0.04);
+            border-radius: 50%;
+        }
+        .breadcrumb-title {
+            color: var(--white);
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+        .breadcrumb-title span {
+            color: var(--secondary-color);
+        }
+        .breadcrumb-nav {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            position: relative;
+            z-index: 2;
+        }
+        .breadcrumb-nav a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        .breadcrumb-nav a:hover { color: var(--secondary-color); }
+        .breadcrumb-nav .separator {
+            color: var(--secondary-color);
+            font-size: 0.8rem;
+        }
+        .breadcrumb-nav .current {
+            color: var(--secondary-color);
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+        .breadcrumb-decoration {
+            position: absolute;
+            right: 5%;
+            top: 50%;
+            transform: translateY(-50%);
+            opacity: 0.06;
+            font-size: 12rem;
+            font-weight: 900;
+            color: var(--white);
+            z-index: 1;
+            line-height: 1;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* About Intro */
+        .about-intro {
+            padding: 100px 0;
+            background: var(--white);
+        }
+        .about-intro-text h2 {
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+        .about-intro-text h2 span { color: var(--secondary-color); }
+        .about-intro-text p {
+            color: var(--text-gray);
+            font-size: 1.05rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+        .intro-badge {
+            display: inline-block;
+            background: rgba(255, 207, 63, 0.15);
+            color: var(--primary-color);
+            padding: 0.4rem 1.2rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 1.2rem;
+            border: 1px solid rgba(255, 207, 63, 0.4);
+        }
+        .about-image-wrap {
+            position: relative;
+        }
+        .about-image-wrap img {
+            width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+        }
+        .about-exp-badge {
+            position: absolute;
+            bottom: -20px;
+            left: -20px;
+            background: var(--secondary-color);
+            color: var(--primary-color);
+            padding: 1.5rem 2rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(255, 207, 63, 0.4);
+            text-align: center;
+        }
+        .about-exp-badge .exp-num {
+            font-size: 2.5rem;
+            font-weight: 900;
+            line-height: 1;
+            display: block;
+        }
+        .about-exp-badge .exp-label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            line-height: 1.3;
+        }
+
+        /* Stats */
+        .stats-section {
+            background: var(--bg-light);
+            padding: 80px 0;
+        }
+        .stat-box { text-align: center; padding: 2rem; }
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: var(--secondary-color);
+            display: block;
+            line-height: 1;
+        }
+        .stat-label {
+            font-size: 1rem;
+            color: var(--text-gray);
+            margin-top: 0.5rem;
+            font-weight: 500;
+        }
+
+        /* Why Choose Us */
+        .why-us {
+            padding: 100px 0;
+            background: var(--white);
+        }
+        .section-subtitle {
+            color: var(--secondary-color);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        .section-title {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+        .section-description {
+            color: var(--text-gray);
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .section-header { text-align: center; margin-bottom: 4rem; }
+
+        .why-card {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 2.5rem;
+            height: 100%;
+            box-shadow: 0 5px 30px rgba(0,0,0,0.07);
+            border: 1px solid #f0f0f0;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .why-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 4px;
+            background: linear-gradient(90deg, var(--secondary-color), #ffd95a);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+            transform-origin: left;
+        }
+        .why-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.12);
+        }
+        .why-card:hover::before { transform: scaleX(1); }
+        .why-icon {
+            width: 65px; height: 65px;
+            background: linear-gradient(135deg, var(--secondary-color), #ffd95a);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.6rem;
+            color: var(--primary-color);
+        }
+        .why-card h4 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+        }
+        .why-card p {
+            color: var(--text-gray);
+            margin: 0;
+            line-height: 1.7;
+            font-size: 0.97rem;
+        }
+
+        /* Mission / Values */
+        .mission-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, var(--primary-color), #1a3a5f);
+            position: relative;
+            overflow: hidden;
+        }
+        .mission-section::before {
+            content: '';
+            position: absolute;
+            top: -100px; right: -100px;
+            width: 400px; height: 400px;
+            background: rgba(255,207,63,0.07);
+            border-radius: 50%;
+        }
+        .mission-section::after {
+            content: '';
+            position: absolute;
+            bottom: -80px; left: -80px;
+            width: 300px; height: 300px;
+            background: rgba(255,207,63,0.05);
+            border-radius: 50%;
+        }
+        .mission-card {
+            background: rgba(255,255,255,0.07);
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 15px;
+            padding: 2.5rem;
+            height: 100%;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        .mission-card:hover {
+            background: rgba(255,255,255,0.12);
+            transform: translateY(-5px);
+        }
+        .mission-icon {
+            width: 60px; height: 60px;
+            background: var(--secondary-color);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+        }
+        .mission-card h4 { color: var(--white); font-size: 1.3rem; margin-bottom: 0.75rem; }
+        .mission-card p { color: rgba(255,255,255,0.75); margin: 0; line-height: 1.7; }
+        .mission-heading { color: var(--white); }
+        .mission-heading span { color: var(--secondary-color); }
+
+        /* Services quick list */
+        .services-quick {
+            padding: 100px 0;
+            background: var(--bg-light);
+        }
+        .service-pill {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background: var(--white);
+            border-radius: 12px;
+            padding: 1.5rem 2rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.06);
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+        .service-pill:hover {
+            border-left-color: var(--secondary-color);
+            transform: translateX(6px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+        .service-pill-icon {
+            width: 45px; height: 45px;
+            background: linear-gradient(135deg, var(--secondary-color), #ffd95a);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            color: var(--primary-color);
+            flex-shrink: 0;
+        }
+        .service-pill-text { font-weight: 600; font-size: 1rem; color: var(--text-dark); }
+
+        /* CTA */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary-color), #1a3a5f);
+            padding: 100px 0;
+            text-align: center;
+            color: var(--white);
+        }
+        .cta-section h2 { color: var(--white); font-size: clamp(2rem, 5vw, 3rem); margin-bottom: 1.5rem; font-weight: 800; }
+        .cta-section p { font-size: 1.2rem; margin-bottom: 2.5rem; opacity: 0.9; max-width: 700px; margin-left: auto; margin-right: auto; }
+        .btn-cta {
+            background: var(--secondary-color);
+            color: var(--primary-color);
+            padding: 1.2rem 3rem;
+            border-radius: 50px;
+            font-weight: 700;
+            border: none;
+            transition: all 0.3s ease;
+            font-size: 1.05rem;
+            cursor: pointer;
+        }
+        .btn-cta:hover { background: var(--white); transform: translateY(-3px); box-shadow: 0 10px 40px rgba(255,255,255,0.3); }
+
+        /* Footer */
+        footer { background: #f8f9fa; padding: 80px 0 30px; }
+        .footer-brand { font-family: 'Geometrix', sans-serif; font-size: 1.75rem; font-weight: 800; color: var(--primary-color); margin-bottom: 1rem; }
+        .footer-logo { width: 50px; height: 50px; border-radius: 8px; margin-bottom: 1rem; }
+        .footer-text { color: var(--text-gray); margin-bottom: 1.5rem; max-width: 350px; }
+        .footer-links h5 { font-weight: 700; margin-bottom: 1.5rem; color: var(--text-dark); font-size: 1.1rem; }
+        .footer-links ul { list-style: none; padding: 0; }
+        .footer-links ul li { margin-bottom: 0.75rem; }
+        .footer-links ul li a { color: var(--text-gray); text-decoration: none; transition: all 0.3s ease; }
+        .footer-links ul li a:hover { color: var(--secondary-color); padding-left: 5px; }
+        .social-links { display: flex; gap: 0.75rem; margin-top: 1.5rem; }
+        .social-links a {
+            width: 40px; height: 40px;
+            background: var(--white);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--primary-color);
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+        .social-links a:hover { background: var(--secondary-color); color: var(--white); transform: translateY(-3px); }
+        .copyright { text-align: center; padding-top: 2rem; margin-top: 3rem; border-top: 1px solid #dee2e6; color: var(--text-gray); }
+        .copyright a { color: var(--secondary-color); text-decoration: none; }
+        .map-container { border-radius: 10px; overflow: hidden; height: 250px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
+        .map-container iframe { width: 100%; height: 100%; border: 0; }
+
+        @media (max-width: 768px) {
+            .navbar-collapse { background: var(--white); padding: 1.5rem; margin-top: 1rem; border-radius: 10px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
+            .nav-link { margin: 0.5rem 0; }
+            .about-exp-badge { position: static; margin-top: 1.5rem; display: inline-block; }
+            .breadcrumb-decoration { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="logo.jpeg" alt="TaxBuzz Business Solution Logo" class="navbar-logo">
+                TaxBuzz Business Solution
+            </a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item"><a class="nav-link" href="index.html#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#features">Features</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/services.html">Services</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/contact.html">Contact</a></li>
+                    <li class="nav-item ms-lg-3">
+                        <a href="https://wa.me/918078584557?text=Hello%20TaxBuzz%20Business%20Solution!" class="btn-primary-custom">
+                            <i class="fab fa-whatsapp me-2"></i>WhatsApp
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Breadcrumb -->
+    <section class="breadcrumb-section" style="margin-top: 85px;">
+        <div class="breadcrumb-decoration">ABOUT</div>
+        <div class="container">
+            <h1 class="breadcrumb-title">About <span>Us</span></h1>
+            <div class="breadcrumb-nav">
+                <a href="index.html"><i class="fas fa-home me-1"></i>Home</a>
+                <span class="separator"><i class="fas fa-chevron-right"></i></span>
+                <span class="current">About Us</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Intro -->
+    <section class="about-intro">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6">
+                    <div class="about-image-wrap">
+                        <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&h=600&fit=crop" alt="TaxBuzz Team">
+                        <div class="about-exp-badge">
+                            <span class="exp-num">7+</span>
+                            <span class="exp-label">Years of<br>Experience</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="about-intro-text">
+                        <div class="intro-badge">Who We Are</div>
+                        <h2>Your Trusted Partner in Tax & <span>Business Consulting</span></h2>
+                        <p>
+                            Welcome to TaxBuzz Business Solutions, your trusted partner in tax and business consulting. Based in Manjeri, Malappuram District, we are committed to delivering reliable, efficient, and professional financial services to individuals and businesses.
+                        </p>
+                        <p>
+                            With over 4 years of successful operation, our firm has built a strong reputation for accuracy, transparency, and client satisfaction. Backed by more than 7 years of hands-on experience in the field of taxation and business consulting, we bring deep industry knowledge and practical expertise to every client engagement.
+                        </p>
+                        <p>
+                            Our range of services includes Income Tax filing and advisory, GST registration and compliance, accounting services, internal audits, and firm registration. We aim to simplify complex financial processes and help our clients stay compliant while focusing on their growth.
+                        </p>
+                        <p>
+                            At TaxBuzz Business Solutions, we believe in building long-term relationships by offering personalized solutions tailored to each client's needs. Your success is our priority.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-6">
+                    <div class="stat-box">
+                        <span class="stat-number">7+</span>
+                        <div class="stat-label">Years Experience</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="stat-box">
+                        <span class="stat-number">4+</span>
+                        <div class="stat-label">Years in Operation</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="stat-box">
+                        <span class="stat-number">500+</span>
+                        <div class="stat-label">Happy Clients</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="stat-box">
+                        <span class="stat-number">98%</span>
+                        <div class="stat-label">Client Satisfaction</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="why-us">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-subtitle">WHY CHOOSE US</div>
+                <h2 class="section-title">What Sets Us Apart</h2>
+                <p class="section-description">
+                    At TaxBuzz Business Solutions, we go beyond just providing services — we deliver trust, expertise, and results.
+                </p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3">
+                    <div class="why-card">
+                        <div class="why-icon"><i class="fas fa-award"></i></div>
+                        <h4>Deep Expertise</h4>
+                        <p>With over 7 years of experience in tax and business consulting, we bring deep knowledge and practical insights to handle even the most complex financial matters with confidence.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="why-card">
+                        <div class="why-icon"><i class="fas fa-layer-group"></i></div>
+                        <h4>All-in-One Services</h4>
+                        <p>We offer a complete range of services under one roof — Income Tax, GST, accounting, internal audits, and firm registration — saving you time and ensuring seamless financial management.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="why-card">
+                        <div class="why-icon"><i class="fas fa-user-tie"></i></div>
+                        <h4>Client-Focused Approach</h4>
+                        <p>We understand that every business is unique, so we provide personalized solutions tailored to your specific needs and goals, ensuring the best outcomes for you.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="why-card">
+                        <div class="why-icon"><i class="fas fa-map-marker-alt"></i></div>
+                        <h4>Locally Based</h4>
+                        <p>Being locally based in Manjeri, we are easily accessible and understand the regional business environment, allowing us to offer practical and relevant guidance.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission / Values -->
+    <section class="mission-section">
+        <div class="container">
+            <div class="section-header mb-5">
+                <div class="section-subtitle">OUR FOUNDATION</div>
+                <h2 class="section-title mission-heading">Our Mission & <span>Core Values</span></h2>
+                <p class="section-description" style="color: rgba(255,255,255,0.7);">
+                    The principles that guide everything we do at TaxBuzz Business Solutions
+                </p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="mission-card">
+                        <div class="mission-icon"><i class="fas fa-bullseye"></i></div>
+                        <h4>Our Mission</h4>
+                        <p>To simplify complex financial processes and empower individuals and businesses to stay compliant, save more, and grow confidently — with expert guidance at every step.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mission-card">
+                        <div class="mission-icon"><i class="fas fa-eye"></i></div>
+                        <h4>Our Vision</h4>
+                        <p>To be the most trusted name in tax and business consulting in Malappuram and beyond, known for integrity, innovation, and client-centric excellence.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mission-card">
+                        <div class="mission-icon"><i class="fas fa-handshake"></i></div>
+                        <h4>Our Values</h4>
+                        <p>Transparency, accuracy, and long-term relationships form the core of everything we do. We treat every client's financial success as our own responsibility.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Quick -->
+    <section class="services-quick">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6">
+                    <div class="intro-badge">What We Offer</div>
+                    <h2 class="section-title" style="text-align:left;">Services We <span style="color:var(--secondary-color)">Provide</span></h2>
+                    <p style="color:var(--text-gray); font-size:1.05rem; margin-bottom:2rem;">
+                        From tax filing to firm registration, we cover all your financial and compliance needs under one roof.
+                    </p>
+                    <a href="index.html#services" class="btn-primary-custom">View All Services</a>
+                </div>
+                <div class="col-lg-6">
+                    <div class="service-pill">
+                        <div class="service-pill-icon"><i class="fas fa-file-invoice-dollar"></i></div>
+                        <span class="service-pill-text">Income Tax Filing & Advisory</span>
+                    </div>
+                    <div class="service-pill">
+                        <div class="service-pill-icon"><i class="fas fa-receipt"></i></div>
+                        <span class="service-pill-text">GST Registration & Compliance</span>
+                    </div>
+                    <div class="service-pill">
+                        <div class="service-pill-icon"><i class="fas fa-book"></i></div>
+                        <span class="service-pill-text">Accounting Services</span>
+                    </div>
+                    <div class="service-pill">
+                        <div class="service-pill-icon"><i class="fas fa-search-dollar"></i></div>
+                        <span class="service-pill-text">Internal Audits</span>
+                    </div>
+                    <div class="service-pill">
+                        <div class="service-pill-icon"><i class="fas fa-building"></i></div>
+                        <span class="service-pill-text">Firm Registration</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Partner With Us for Your Financial Success</h2>
+            <p>
+                Choose TaxBuzz Business Solutions for professional service, dependable support, and a partner who is committed to your financial success.
+            </p>
+            <button class="btn-cta" onclick="window.location.href='https://wa.me/918078584557'">
+                <i class="fab fa-whatsapp me-2"></i>Get In Touch Today
+            </button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <img src="logo.jpeg" alt="TaxBuzz Business Solution Logo" class="footer-logo">
+                    <div class="footer-brand">TaxBuzz Business Solution</div>
+                    <p class="footer-text">
+                        Your trusted partner in tax planning and financial optimization. We're here to make taxes simple, strategic, and stress-free.
+                    </p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <div class="footer-links">
+                        <h5>Quick Links</h5>
+                        <ul>
+                            <li><a href="about.html">About Us</a></li>
+                            <li><a href="services.html">Services</a></li>
+                            <li><a href="index.html#features">Features</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <div class="footer-links">
+                        <h5>Services</h5>
+                        <ul>
+                            <li><a href="#">Tax Audit</a></li>
+                            <li><a href="#">GST Filing</a></li>
+                            <li><a href="#">Income Tax</a></li>
+                            <li><a href="#">TDS/TCS</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <div class="footer-links">
+                        <h5>Contact Info</h5>
+                        <ul>
+                            <li><a href="tel:+918078584557"><i class="fas fa-phone me-2"></i>+91 8078584557</a></li>
+                            <li style="color: var(--text-gray);"><i class="fas fa-map-marker-alt me-2"></i>Manjeri, Malappuram District, Kerala, India</li>
+                        </ul>
+                        <div class="map-container mt-3">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3914.843978758795!2d76.11562577482336!3d11.12499538904573!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba637749603159b%3A0x891ee4aa80b6ea38!2sTax%20Buzz%20Business%20Solution!5e0!3m2!1sen!2sin!4v1770138618999!5m2!1sen!2sin" allowfullscreen="" loading="lazy"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2024 TaxBuzz Business Solution. All rights reserved. | Designed with <a href="https://calio.co.in">Calio</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -3,1155 +3,779 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Services - TaxBuzz</title>
+    <title>Our Services - TaxBuzz Business Solution</title>
     
-    <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;600;700;900&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
-    
-    <!-- Font Awesome -->
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <style>
+        @import url('https://fonts.cdnfonts.com/css/geometrix');
+
         :root {
-            --navy-blue: #102544;
-            --gold: #FFCF3F;
-            --cream: #FFFDF4;
-            --navy-light: #1a3a5f;
-            --navy-dark: #0a1a2e;
+            --primary-color: #102544;
+            --secondary-color: #FFCF3F;
+            --text-dark: #1a1a1a;
+            --text-gray: #666666;
+            --bg-light: #f8f9fa;
+            --white: #ffffff;
         }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
         body {
-            font-family: 'Archivo', sans-serif;
-            background-color: var(--navy-blue);
-            color: var(--cream);
+            font-family: 'Geometrix', 'DM Sans', sans-serif;
+            color: var(--text-dark);
+            background: var(--white);
+            line-height: 1.7;
             overflow-x: hidden;
-            position: relative;
         }
-        
-        /* 3D Background Elements */
-        .bg-3d-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-            pointer-events: none;
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Geometrix', 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: var(--text-dark);
+            line-height: 1.3;
+        }
+
+        /* Navbar */
+        .navbar {
+            padding: 1.5rem 0;
+            background: var(--white);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+        }
+        .navbar-brand {
+            font-family: 'Geometrix', sans-serif;
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: var(--primary-color) !important;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .navbar-logo { width: 45px; height: 45px; object-fit: cover; border-radius: 8px; }
+        .nav-link {
+            color: var(--text-dark) !important;
+            font-weight: 500;
+            font-size: 0.95rem;
+            margin: 0 0.75rem;
+            padding: 0.5rem 0 !important;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0;
+            width: 0; height: 2px;
+            background: var(--secondary-color);
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover, .nav-link.active { color: var(--secondary-color) !important; }
+        .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+        .btn-primary-custom {
+            background: var(--secondary-color);
+            color: var(--primary-color);
+            padding: 0.75rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            border: 2px solid var(--secondary-color);
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn-primary-custom:hover {
+            background: transparent;
+            color: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        /* Breadcrumb Section */
+        .breadcrumb-section {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #1a3a5f 100%);
+            padding: 80px 0 50px;
+            position: relative;
             overflow: hidden;
         }
-        
-        .floating-shape {
-            position: absolute;
-            opacity: 0.03;
-            animation: float 20s infinite ease-in-out;
-        }
-        
-        .shape-1 {
-            width: 400px;
-            height: 400px;
-            background: linear-gradient(135deg, var(--gold) 0%, transparent 100%);
-            border-radius: 50%;
-            top: 10%;
-            left: -10%;
-            animation-delay: 0s;
-            filter: blur(80px);
-        }
-        
-        .shape-2 {
-            width: 500px;
-            height: 500px;
-            background: linear-gradient(225deg, var(--gold) 0%, transparent 100%);
-            border-radius: 50%;
-            bottom: -10%;
-            right: -10%;
-            animation-delay: 5s;
-            filter: blur(100px);
-        }
-        
-        .shape-3 {
-            width: 300px;
-            height: 300px;
-            background: linear-gradient(315deg, var(--cream) 0%, transparent 100%);
-            border-radius: 50%;
-            top: 50%;
-            right: 20%;
-            animation-delay: 10s;
-            filter: blur(60px);
-        }
-        
-        @keyframes float {
-            0%, 100% {
-                transform: translate(0, 0) scale(1);
-            }
-            25% {
-                transform: translate(30px, -30px) scale(1.05);
-            }
-            50% {
-                transform: translate(-20px, 20px) scale(0.95);
-            }
-            75% {
-                transform: translate(20px, 30px) scale(1.02);
-            }
-        }
-        
-        /* Grain texture overlay */
-        body::after {
+        .breadcrumb-section::before {
             content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-            opacity: 0.015;
-            pointer-events: none;
-            z-index: 1;
+            position: absolute;
+            top: -50%; right: -10%;
+            width: 500px; height: 500px;
+            background: rgba(255, 207, 63, 0.06);
+            border-radius: 50%;
         }
-        
-        /* Main content wrapper */
-        .content-wrapper {
+        .breadcrumb-section::after {
+            content: '';
+            position: absolute;
+            bottom: -30%; left: -5%;
+            width: 300px; height: 300px;
+            background: rgba(255, 207, 63, 0.04);
+            border-radius: 50%;
+        }
+        .breadcrumb-title {
+            color: var(--white);
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
             position: relative;
             z-index: 2;
         }
-        
-        /* Navigation */
-        .navbar {
-            background: rgba(16, 37, 68, 0.95);
-            backdrop-filter: blur(20px);
-            padding: 1.5rem 0;
-            border-bottom: 1px solid rgba(255, 207, 63, 0.1);
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-        }
-        
-        .navbar-brand {
-            font-family: 'Syne', sans-serif;
-            font-size: 2rem;
-            font-weight: 800;
-            color: var(--gold) !important;
-            letter-spacing: -0.02em;
+        .breadcrumb-title span { color: var(--secondary-color); }
+        .breadcrumb-nav {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
             position: relative;
-            transition: all 0.3s ease;
+            z-index: 2;
         }
-        
-        .navbar-logo {
-            width: 50px;
-            height: 50px;
-            object-fit: contain;
-            transition: all 0.3s ease;
-            filter: drop-shadow(0 0 10px rgba(255, 207, 63, 0.3));
-        }
-        
-        .navbar-brand:hover .navbar-logo {
-            transform: rotate(-10deg) scale(1.1);
-        }
-        
-        .navbar-brand:hover {
-            transform: translateY(-2px);
-        }
-        
-        .navbar-brand span {
-            display: inline-block;
-            transition: all 0.3s ease;
-        }
-        
-        .navbar-brand:hover span {
-            letter-spacing: 0.05em;
-        }
-        
-        .navbar-brand::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 3px;
-            bottom: -5px;
-            left: 0;
-            background: var(--gold);
-            transition: width 0.3s ease;
-        }
-        
-        .navbar-brand:hover::after {
-            width: 100%;
-        }
-        
-        .nav-link {
-            color: var(--cream) !important;
-            font-weight: 600;
-            margin: 0 1rem;
-            position: relative;
-            transition: all 0.3s ease;
-            font-size: 0.95rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-        
-        .nav-link::before {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: 0;
-            left: 50%;
-            background: var(--gold);
-            transition: all 0.3s ease;
-            transform: translateX(-50%);
-        }
-        
-        .nav-link:hover,
-        .nav-link.active {
-            color: var(--gold) !important;
-        }
-        
-        .nav-link:hover::before,
-        .nav-link.active::before {
-            width: 100%;
-        }
-        
-        .btn-nav {
-            background: var(--gold);
-            color: var(--navy-blue);
-            padding: 0.7rem 2rem;
-            border-radius: 50px;
-            font-weight: 700;
-            transition: all 0.3s ease;
-            border: 2px solid var(--gold);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            font-size: 0.9rem;
-        }
-        
-        .btn-nav:hover {
-            background: transparent;
-            color: var(--gold);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(255, 207, 63, 0.3);
-        }
-        
-        /* Page Header */
-        .page-header {
-            padding: 150px 0 80px;
-            background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy-blue) 100%);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .page-header::before {
-            content: '';
-            position: absolute;
-            width: 800px;
-            height: 800px;
-            background: radial-gradient(circle, rgba(255, 207, 63, 0.08) 0%, transparent 70%);
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-        
-        .page-header h1 {
-            font-family: 'Syne', sans-serif;
-            font-size: clamp(3rem, 7vw, 5rem);
-            font-weight: 900;
-            color: var(--cream);
-            margin-bottom: 1rem;
-            letter-spacing: -0.03em;
-            animation: slideInUp 0.8s ease-out;
-        }
-        
-        .page-header p {
-            font-size: 1.3rem;
-            color: rgba(255, 253, 244, 0.7);
-            max-width: 700px;
-            animation: slideInUp 0.8s ease-out 0.2s backwards;
-        }
-        
-        @keyframes slideInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        /* Breadcrumbs */
-        .breadcrumb-container {
-            padding: 2rem 0;
-            animation: slideInUp 0.8s ease-out 0.3s backwards;
-        }
-        
-        .breadcrumb {
-            background: rgba(255, 207, 63, 0.05);
-            border: 1px solid rgba(255, 207, 63, 0.1);
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            margin: 0;
-            display: inline-flex;
-            backdrop-filter: blur(10px);
-        }
-        
-        .breadcrumb-item {
-            color: rgba(255, 253, 244, 0.7);
-            font-weight: 600;
-            font-size: 0.95rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-        
-        .breadcrumb-item + .breadcrumb-item::before {
-            content: "›";
-            color: var(--gold);
-            font-size: 1.2rem;
-            font-weight: 700;
-        }
-        
-        .breadcrumb-item a {
-            color: rgba(255, 253, 244, 0.7);
+        .breadcrumb-nav a {
+            color: rgba(255,255,255,0.7);
             text-decoration: none;
-            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.3s;
         }
-        
-        .breadcrumb-item a:hover {
-            color: var(--gold);
+        .breadcrumb-nav a:hover { color: var(--secondary-color); }
+        .breadcrumb-nav .separator { color: var(--secondary-color); font-size: 0.8rem; }
+        .breadcrumb-nav .current { color: var(--secondary-color); font-size: 0.95rem; font-weight: 600; }
+        .breadcrumb-decoration {
+            position: absolute;
+            right: 5%; top: 50%;
+            transform: translateY(-50%);
+            opacity: 0.06;
+            font-size: 12rem;
+            font-weight: 900;
+            color: var(--white);
+            z-index: 1;
+            line-height: 1;
+            font-family: 'Montserrat', sans-serif;
         }
-        
-        .breadcrumb-item.active {
-            color: var(--gold);
-            font-weight: 700;
+        .breadcrumb-subtitle {
+            color: rgba(255,255,255,0.75);
+            font-size: 1.1rem;
+            margin-top: 1rem;
+            position: relative;
+            z-index: 2;
+            max-width: 600px;
         }
-        
-        /* Services Section */
-        .services-section {
-            padding: 80px 0;
+
+        /* Section */
+        .section-subtitle {
+            color: var(--secondary-color);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
         }
-        
-        .section-intro {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-        
-        .section-intro h2 {
-            font-family: 'Syne', sans-serif;
+        .section-title {
             font-size: clamp(2rem, 5vw, 3rem);
             font-weight: 800;
-            color: var(--cream);
             margin-bottom: 1rem;
-            letter-spacing: -0.02em;
         }
-        
-        .section-intro p {
-            font-size: 1.2rem;
-            color: rgba(255, 253, 244, 0.7);
+        .section-description {
+            color: var(--text-gray);
+            font-size: 1.1rem;
             max-width: 700px;
             margin: 0 auto;
         }
-        
-        /* Service Cards */
-        .service-card {
-            background: linear-gradient(135deg, rgba(255, 253, 244, 0.05) 0%, rgba(255, 207, 63, 0.03) 100%);
-            border: 1px solid rgba(255, 207, 63, 0.15);
-            border-radius: 25px;
-            padding: 0;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            height: 100%;
-            overflow: hidden;
-            position: relative;
-            backdrop-filter: blur(10px);
+        .section-header { text-align: center; margin-bottom: 4rem; }
+
+        /* Services Grid */
+        .services-section {
+            padding: 100px 0;
+            background: var(--white);
         }
-        
+
+        .service-card {
+            background: var(--white);
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 5px 30px rgba(0,0,0,0.07);
+            border: 1px solid #f0f0f0;
+            height: 100%;
+            transition: all 0.35s ease;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
         .service-card::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(255, 207, 63, 0.1) 0%, transparent 100%);
-            opacity: 0;
-            transition: opacity 0.4s ease;
-            z-index: 0;
+            top: 0; left: 0;
+            width: 100%; height: 4px;
+            background: linear-gradient(90deg, var(--secondary-color), #ffd95a);
+            transform: scaleX(0);
+            transition: transform 0.35s ease;
+            transform-origin: left;
+            z-index: 2;
         }
-        
         .service-card:hover {
-            transform: translateY(-15px);
-            border-color: rgba(255, 207, 63, 0.4);
-            box-shadow: 0 25px 70px rgba(255, 207, 63, 0.2);
+            transform: translateY(-10px);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.13);
+            border-color: rgba(255,207,63,0.25);
         }
-        
-        .service-card:hover::before {
-            opacity: 1;
-        }
-        
-        .service-icon-wrapper {
+        .service-card:hover::before { transform: scaleX(1); }
+
+        /* Icon area */
+        .service-icon-wrap {
             width: 100%;
-            height: 250px;
-            background: linear-gradient(135deg, rgba(255, 207, 63, 0.15) 0%, rgba(255, 207, 63, 0.05) 100%);
+            height: 160px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, #1a3a5f 100%);
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
             overflow: hidden;
-            border-bottom: 2px solid rgba(255, 207, 63, 0.2);
+            flex-shrink: 0;
         }
-        
-        .service-icon-wrapper::before {
+        .service-icon-wrap::before {
             content: '';
             position: absolute;
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, rgba(255, 207, 63, 0.2) 0%, transparent 70%);
+            width: 200px; height: 200px;
+            background: rgba(255,207,63,0.1);
             border-radius: 50%;
-            top: 50%;
-            left: 50%;
+            top: 50%; left: 50%;
             transform: translate(-50%, -50%) scale(0.8);
-            transition: transform 0.6s ease;
+            transition: transform 0.5s ease;
         }
-        
-        .service-card:hover .service-icon-wrapper::before {
-            transform: translate(-50%, -50%) scale(1.2);
+        .service-card:hover .service-icon-wrap::before {
+            transform: translate(-50%, -50%) scale(1.3);
         }
-        
-        .service-icon {
-            font-size: 5rem;
-            color: var(--gold);
+        .service-icon-wrap i {
+            font-size: 3.5rem;
+            color: var(--secondary-color);
             position: relative;
             z-index: 1;
-            transition: all 0.4s ease;
-            filter: drop-shadow(0 10px 30px rgba(255, 207, 63, 0.3));
+            transition: transform 0.4s ease;
+            filter: drop-shadow(0 5px 15px rgba(255,207,63,0.3));
         }
-        
-        .service-card:hover .service-icon {
-            transform: scale(1.15) rotateY(180deg);
+        .service-card:hover .service-icon-wrap i {
+            transform: scale(1.1);
         }
-        
-        .service-content {
-            padding: 2.5rem 2rem;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .service-number {
-            font-family: 'Syne', sans-serif;
-            font-size: 1rem;
-            font-weight: 700;
-            color: var(--gold);
-            background: rgba(255, 207, 63, 0.1);
-            padding: 0.4rem 1rem;
+        .service-num-badge {
+            position: absolute;
+            top: 1rem; right: 1rem;
+            background: rgba(255,207,63,0.15);
+            border: 1px solid rgba(255,207,63,0.3);
+            color: var(--secondary-color);
+            padding: 0.25rem 0.8rem;
             border-radius: 50px;
-            display: inline-block;
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-        }
-        
-        .service-card h3 {
-            font-family: 'Syne', sans-serif;
-            font-size: 1.6rem;
+            font-size: 0.75rem;
             font-weight: 700;
-            margin-bottom: 1rem;
-            color: var(--cream);
-            line-height: 1.3;
+            letter-spacing: 1px;
+            z-index: 2;
         }
-        
-        .service-card p {
-            color: rgba(255, 253, 244, 0.7);
-            line-height: 1.8;
-            margin-bottom: 1.5rem;
+
+        /* Card body */
+        .service-body {
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
         }
-        
+        .service-body h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 0.75rem;
+        }
+        .service-body p {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 1.25rem;
+        }
         .service-features {
             list-style: none;
             padding: 0;
-            margin: 1.5rem 0;
+            margin: 0 0 1.75rem;
+            flex: 1;
         }
-        
         .service-features li {
-            color: rgba(255, 253, 244, 0.7);
-            padding: 0.5rem 0;
-            padding-left: 1.8rem;
+            color: var(--text-gray);
+            padding: 0.4rem 0;
+            padding-left: 1.75rem;
             position: relative;
+            font-size: 0.92rem;
         }
-        
         .service-features li::before {
             content: '\f00c';
             font-family: 'Font Awesome 6 Free';
             font-weight: 900;
             position: absolute;
             left: 0;
-            color: var(--gold);
-            font-size: 0.9rem;
+            color: var(--secondary-color);
+            font-size: 0.8rem;
+            top: 0.5rem;
         }
-        
-        .btn-service {
-            background: transparent;
-            color: var(--gold);
-            border: 2px solid var(--gold);
-            padding: 0.8rem 2rem;
+
+        /* WhatsApp button */
+        .btn-whatsapp {
+            background: #25D366;
+            color: var(--white);
+            padding: 0.8rem 1.5rem;
             border-radius: 50px;
             font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
+            border: none;
             font-size: 0.9rem;
-            transition: all 0.3s ease;
-            display: inline-block;
             text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            width: 100%;
         }
-        
-        .btn-service:hover {
-            background: var(--gold);
-            color: var(--navy-blue);
+        .btn-whatsapp:hover {
+            background: #128C7E;
+            color: var(--white);
             transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(255, 207, 63, 0.3);
+            box-shadow: 0 8px 25px rgba(37,211,102,0.35);
         }
-        
-        /* CTA Section */
+        .btn-whatsapp i { font-size: 1.1rem; }
+
+        /* Alternating bg section */
+        .services-section-alt {
+            padding: 0 0 100px;
+            background: var(--white);
+        }
+
+        /* CTA */
         .cta-section {
+            background: linear-gradient(135deg, var(--primary-color), #1a3a5f);
             padding: 100px 0;
-            background: linear-gradient(135deg, var(--navy-light) 0%, var(--navy-blue) 100%);
-            position: relative;
-            overflow: hidden;
-            margin-top: 80px;
-        }
-        
-        .cta-section::before {
-            content: '';
-            position: absolute;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(255, 207, 63, 0.1) 0%, transparent 70%);
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            animation: pulse 4s ease-in-out infinite;
-        }
-        
-        @keyframes pulse {
-            0%, 100% {
-                transform: translate(-50%, -50%) scale(1);
-                opacity: 0.5;
-            }
-            50% {
-                transform: translate(-50%, -50%) scale(1.2);
-                opacity: 0.8;
-            }
-        }
-        
-        .cta-content {
-            position: relative;
-            z-index: 2;
             text-align: center;
         }
-        
-        .cta-content h2 {
-            font-family: 'Syne', sans-serif;
-            font-size: clamp(2rem, 5vw, 3.5rem);
-            font-weight: 900;
-            margin-bottom: 2rem;
-            color: var(--cream);
-        }
-        
-        .cta-content p {
-            font-size: 1.3rem;
-            margin-bottom: 3rem;
-            color: rgba(255, 253, 244, 0.8);
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-        .btn-primary-cta {
-            background: var(--gold);
-            color: var(--navy-blue);
+        .cta-section h2 { color: var(--white); font-size: clamp(2rem, 5vw, 3rem); margin-bottom: 1.5rem; font-weight: 800; }
+        .cta-section p { font-size: 1.15rem; margin-bottom: 2.5rem; opacity: 0.85; max-width: 650px; margin-left: auto; margin-right: auto; color: var(--white); }
+        .btn-cta {
+            background: var(--secondary-color);
+            color: var(--primary-color);
             padding: 1.2rem 3rem;
             border-radius: 50px;
             font-weight: 700;
             border: none;
             transition: all 0.3s ease;
-            font-size: 1.1rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            position: relative;
-            overflow: hidden;
+            font-size: 1.05rem;
+            cursor: pointer;
             text-decoration: none;
             display: inline-block;
         }
-        
-        .btn-primary-cta::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.3);
-            transform: translate(-50%, -50%);
-            transition: width 0.6s ease, height 0.6s ease;
-        }
-        
-        .btn-primary-cta:hover::before {
-            width: 300px;
-            height: 300px;
-        }
-        
-        .btn-primary-cta:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(255, 207, 63, 0.4);
-        }
-        
+        .btn-cta:hover { background: var(--white); color: var(--primary-color); transform: translateY(-3px); box-shadow: 0 10px 40px rgba(255,255,255,0.25); }
+
         /* Footer */
-        footer {
-            background: var(--navy-dark);
-            padding: 80px 0 30px;
-            border-top: 1px solid rgba(255, 207, 63, 0.1);
-        }
-        
-        .footer-brand {
-            font-family: 'Syne', sans-serif;
-            font-size: 2rem;
-            font-weight: 800;
-            color: var(--gold);
-            margin-bottom: 0;
-        }
-        
-        .footer-logo {
-            width: 60px;
-            height: 60px;
-            object-fit: contain;
-            filter: drop-shadow(0 0 15px rgba(255, 207, 63, 0.4));
-            animation: gentleFloat 3s ease-in-out infinite;
-        }
-        
-        @keyframes gentleFloat {
-            0%, 100% {
-                transform: translateY(0px);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
-        }
-        
-        .footer-links h5 {
-            font-family: 'Syne', sans-serif;
-            font-weight: 700;
-            color: var(--gold);
-            margin-bottom: 1.5rem;
-            font-size: 1.2rem;
-        }
-        
-        .footer-links ul {
-            list-style: none;
-            padding: 0;
-        }
-        
-        .footer-links ul li {
-            margin-bottom: 0.8rem;
-        }
-        
-        .footer-links ul li a {
-            color: rgba(255, 253, 244, 0.7);
-            text-decoration: none;
-            transition: all 0.3s ease;
-            display: inline-block;
-        }
-        
-        .footer-links ul li a:hover {
-            color: var(--gold);
-            transform: translateX(5px);
-        }
-        
-        .social-links {
-            display: flex;
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-        
+        footer { background: #f8f9fa; padding: 80px 0 30px; }
+        .footer-brand { font-family: 'Geometrix', sans-serif; font-size: 1.75rem; font-weight: 800; color: var(--primary-color); margin-bottom: 1rem; }
+        .footer-logo { width: 50px; height: 50px; border-radius: 8px; margin-bottom: 1rem; }
+        .footer-text { color: var(--text-gray); margin-bottom: 1.5rem; max-width: 350px; }
+        .footer-links h5 { font-weight: 700; margin-bottom: 1.5rem; color: var(--text-dark); font-size: 1.1rem; }
+        .footer-links ul { list-style: none; padding: 0; }
+        .footer-links ul li { margin-bottom: 0.75rem; }
+        .footer-links ul li a { color: var(--text-gray); text-decoration: none; transition: all 0.3s ease; }
+        .footer-links ul li a:hover { color: var(--secondary-color); padding-left: 5px; }
+        .social-links { display: flex; gap: 0.75rem; margin-top: 1.5rem; }
         .social-links a {
-            width: 50px;
-            height: 50px;
-            background: rgba(255, 207, 63, 0.1);
-            border: 1px solid rgba(255, 207, 63, 0.2);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--gold);
-            font-size: 1.2rem;
+            width: 40px; height: 40px;
+            background: var(--white); border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--primary-color);
             transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
         }
-        
-        .social-links a:hover {
-            background: var(--gold);
-            color: var(--navy-blue);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(255, 207, 63, 0.3);
-        }
-        
-        .copyright {
-            text-align: center;
-            padding-top: 3rem;
-            margin-top: 3rem;
-            border-top: 1px solid rgba(255, 207, 63, 0.1);
-            color: rgba(255, 253, 244, 0.5);
-        }
-        
-        /* Scroll animations */
+        .social-links a:hover { background: var(--secondary-color); color: var(--white); transform: translateY(-3px); }
+        .copyright { text-align: center; padding-top: 2rem; margin-top: 3rem; border-top: 1px solid #dee2e6; color: var(--text-gray); }
+        .copyright a { color: var(--secondary-color); text-decoration: none; }
+        .footer-map { border-radius: 10px; overflow: hidden; height: 220px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
+        .footer-map iframe { width: 100%; height: 100%; border: 0; }
+
+        /* Reveal animation */
         .reveal {
             opacity: 0;
             transform: translateY(30px);
-            transition: all 0.8s ease;
+            transition: all 0.7s ease;
         }
-        
         .reveal.active {
             opacity: 1;
             transform: translateY(0);
         }
-        
-        /* Responsive */
+
         @media (max-width: 768px) {
-            .navbar-logo {
-                width: 40px;
-                height: 40px;
-            }
-            
-            .navbar-brand {
-                font-size: 1.5rem;
-            }
-            
-            .footer-logo {
-                width: 50px;
-                height: 50px;
-            }
-            
-            .page-header {
-                padding: 120px 0 60px;
-            }
-            
-            .navbar-collapse {
-                background: rgba(16, 37, 68, 0.98);
-                padding: 2rem;
-                border-radius: 10px;
-                margin-top: 1rem;
-            }
-            
-            .nav-link {
-                margin: 0.5rem 0;
-            }
-            
-            .service-icon-wrapper {
-                height: 200px;
-            }
-            
-            .service-icon {
-                font-size: 3.5rem;
-            }
-            
-            .breadcrumb {
-                padding: 0.8rem 1.5rem;
-            }
-        }
-        
-        /* Loading animation */
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        
-        body {
-            animation: fadeIn 0.5s ease-in;
+            .navbar-collapse { background: var(--white); padding: 1.5rem; margin-top: 1rem; border-radius: 10px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
+            .nav-link { margin: 0.5rem 0; }
+            .breadcrumb-decoration { display: none; }
         }
     </style>
 </head>
 <body>
-    <!-- 3D Background -->
-    <div class="bg-3d-container">
-        <div class="floating-shape shape-1"></div>
-        <div class="floating-shape shape-2"></div>
-        <div class="floating-shape shape-3"></div>
-    </div>
-    
-    <!-- Main Content Wrapper -->
-    <div class="content-wrapper">
-        <!-- Navigation -->
-        <nav class="navbar navbar-expand-lg fixed-top">
-            <div class="container">
-                <a class="navbar-brand d-flex align-items-center" href="taxbuzz.html">
-                    <img src="logo.jpeg" alt="TaxBuzz Logo" class="navbar-logo me-2">
-                    <span>TaxBuzz</span>
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
-                        style="border-color: var(--gold);">
-                    <span style="color: var(--gold);"><i class="fas fa-bars"></i></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ms-auto align-items-center">
-                        <li class="nav-item">
-                            <a class="nav-link" href="/index.html">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="taxbuzz.html#features">Features</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" href="services.html">Services</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="taxbuzz.html#about">About</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/contact.html">Contact</a>
-                        </li>
-                     <li class="nav-item ms-3">
-                           <a href="https://wa.me/918078584557?text=Hello%20TaxBuzz!" class="btn btn-nav">
-  <i class="fa-brands fa-whatsapp" style="color: #ffffff;"></i>
-</a>
-                        </li>
-                    </ul>
-                </div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="logo.jpeg" alt="TaxBuzz Business Solution Logo" class="navbar-logo">
+                TaxBuzz Business Solution
+            </a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item"><a class="nav-link" href="index.html#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#features">Features</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="services.html">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                    <li class="nav-item ms-lg-3">
+                        <a href="https://wa.me/918078584557?text=Hello%20TaxBuzz%20Business%20Solution!" class="btn-primary-custom">
+                            <i class="fab fa-whatsapp me-2"></i>WhatsApp
+                        </a>
+                    </li>
+                </ul>
             </div>
-        </nav>
-        
-        <!-- Page Header -->
-        <section class="page-header">
-            <div class="container">
-                <div class="breadcrumb-container">
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="taxbuzz.html">Home</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Services</li>
-                        </ol>
-                    </nav>
-                </div>
-                <h1>Our Services</h1>
-                <p>Comprehensive tax and financial solutions tailored to your business needs. We combine expertise, technology, and dedication to deliver exceptional results.</p>
+        </div>
+    </nav>
+
+    <!-- Breadcrumb -->
+    <section class="breadcrumb-section" style="margin-top: 85px;">
+        <div class="breadcrumb-decoration">SERVICES</div>
+        <div class="container">
+            <h1 class="breadcrumb-title">Our <span>Services</span></h1>
+            <div class="breadcrumb-nav">
+                <a href="index.html"><i class="fas fa-home me-1"></i>Home</a>
+                <span class="separator"><i class="fas fa-chevron-right"></i></span>
+                <span class="current">Services</span>
             </div>
-        </section>
-        
-        <!-- Services Section -->
-        <section class="services-section">
-            <div class="container">
-                <div class="section-intro reveal">
-                    <h2>What We Offer</h2>
-                    <p>From audit support to strategic planning, we provide end-to-end tax and financial services designed to help your business thrive.</p>
-                </div>
-                
-                <div class="row g-4">
-                    <!-- Service 1: Tax Audit & Financial Reporting -->
-                    <div class="col-lg-4 col-md-6 reveal">
-                        <div class="service-card">
-                            <div class="service-icon-wrapper">
-                                <i class="fas fa-file-invoice service-icon"></i>
-                            </div>
-                            <div class="service-content">
-                                <span class="service-number">Service 01</span>
-                                <h3>Tax Audit & Financial Reporting</h3>
-                                <p>Comprehensive audit services ensuring accuracy, compliance, and transparent financial reporting for your business.</p>
-                                <ul class="service-features">
-                                    <li>Complete audit preparation</li>
-                                    <li>Financial statement review</li>
-                                    <li>Compliance verification</li>
-                                    <li>Risk assessment & mitigation</li>
-                                </ul>
-                                <a href="#contact" class="btn-service">Learn More</a>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Service 2: GST Audit -->
-                    <div class="col-lg-4 col-md-6 reveal">
-                        <div class="service-card">
-                            <div class="service-icon-wrapper">
-                                <i class="fas fa-search-dollar service-icon"></i>
-                            </div>
-                            <div class="service-content">
-                                <span class="service-number">Service 02</span>
-                                <h3>GST Audit</h3>
-                                <p>Expert GST audit services to ensure your business maintains full compliance with goods and services tax regulations.</p>
-                                <ul class="service-features">
-                                    <li>GST return verification</li>
-                                    <li>Input tax credit reconciliation</li>
-                                    <li>Compliance audit support</li>
-                                    <li>Documentation review</li>
-                                </ul>
-                                <a href="#contact" class="btn-service">Learn More</a>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Service 3: GST Registration & Filing -->
-                    <div class="col-lg-4 col-md-6 reveal">
-                        <div class="service-card">
-                            <div class="service-icon-wrapper">
-                                <i class="fas fa-clipboard-check service-icon"></i>
-                            </div>
-                            <div class="service-content">
-                                <span class="service-number">Service 03</span>
-                                <h3>GST Registration & Filing</h3>
-                                <p>Hassle-free GST registration and timely filing services to keep your business compliant and penalty-free.</p>
-                                <ul class="service-features">
-                                    <li>New GST registration</li>
-                                    <li>Monthly/quarterly filing</li>
-                                    <li>Amendment support</li>
-                                    <li>Cancellation assistance</li>
-                                </ul>
-                                <a href="#contact" class="btn-service">Learn More</a>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Service 4: Income Tax Registration & Filing -->
-                    <div class="col-lg-4 col-md-6 reveal">
-                        <div class="service-card">
-                            <div class="service-icon-wrapper">
-                                <i class="fas fa-file-signature service-icon"></i>
-                            </div>
-                            <div class="service-content">
-                                <span class="service-number">Service 04</span>
-                                <h3>Income Tax Registration & Filing</h3>
-                                <p>Complete income tax solutions for individuals and businesses, ensuring maximum deductions and timely compliance.</p>
-                                <ul class="service-features">
-                                    <li>PAN/TAN registration</li>
-                                    <li>ITR filing (all forms)</li>
-                                    <li>Tax planning strategies</li>
-                                    <li>Refund processing</li>
-                                </ul>
-                                <a href="#contact" class="btn-service">Learn More</a>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Service 5: TDS & TCS Filing -->
-                    <div class="col-lg-4 col-md-6 reveal">
-                        <div class="service-card">
-                            <div class="service-icon-wrapper">
-                                <i class="fas fa-hand-holding-usd service-icon"></i>
-                            </div>
-                            <div class="service-content">
-                                <span class="service-number">Service 05</span>
-                                <h3>TDS & TCS Filing</h3>
-                                <p>Accurate TDS and TCS computation, deduction, and filing services to avoid penalties and ensure compliance.</p>
-                                <ul class="service-features">
-                                    <li>TDS calculation & deduction</li>
-                                    <li>Quarterly return filing</li>
-                                    <li>Form 16/16A issuance</li>
-                                    <li>Correction & rectification</li>
-                                </ul>
-                                <a href="#contact" class="btn-service">Learn More</a>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Service 6: Project Report -->
-                    <div class="col-lg-4 col-md-6 reveal">
-                        <div class="service-card">
-                            <div class="service-icon-wrapper">
-                                <i class="fas fa-project-diagram service-icon"></i>
-                            </div>
-                            <div class="service-content">
-                                <span class="service-number">Service 06</span>
-                                <h3>Project Report Preparation</h3>
-                                <p>Detailed project reports for loans, investments, and business planning with comprehensive financial projections.</p>
-                                <ul class="service-features">
-                                    <li>Feasibility analysis</li>
-                                    <li>Financial projections</li>
-                                    <li>Market research integration</li>
-                                    <li>Loan proposal support</li>
-                                </ul>
-                                <a href="#contact" class="btn-service">Learn More</a>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Service 7: Partnership Registration -->
-                    <div class="col-lg-4 col-md-6 reveal">
-                        <div class="service-card">
-                            <div class="service-icon-wrapper">
-                                <i class="fas fa-handshake service-icon"></i>
-                            </div>
-                            <div class="service-content">
-                                <span class="service-number">Service 07</span>
-                                <h3>Partnership Registration</h3>
-                                <p>Complete partnership firm registration services including deed drafting and statutory compliance setup.</p>
-                                <ul class="service-features">
-                                    <li>Partnership deed drafting</li>
-                                    <li>Registration with authorities</li>
-                                    <li>PAN & bank account setup</li>
-                                    <li>Compliance guidance</li>
-                                </ul>
-                                <a href="#contact" class="btn-service">Learn More</a>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Service 8: Book Keeping -->
-                    <div class="col-lg-4 col-md-6 reveal">
-                        <div class="service-card">
-                            <div class="service-icon-wrapper">
-                                <i class="fas fa-book service-icon"></i>
-                            </div>
-                            <div class="service-content">
-                                <span class="service-number">Service 08</span>
-                                <h3>Book Keeping Services</h3>
-                                <p>Professional bookkeeping services to maintain accurate financial records and support informed business decisions.</p>
-                                <ul class="service-features">
-                                    <li>Daily transaction recording</li>
-                                    <li>Account reconciliation</li>
-                                    <li>Financial statements</li>
-                                    <li>Payroll management</li>
-                                </ul>
-                                <a href="#contact" class="btn-service">Learn More</a>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Service 9: Monthly Performance Analysis -->
-                    <div class="col-lg-4 col-md-6 reveal">
-                        <div class="service-card">
-                            <div class="service-icon-wrapper">
-                                <i class="fas fa-chart-line service-icon"></i>
-                            </div>
-                            <div class="service-content">
-                                <span class="service-number">Service 09</span>
-                                <h3>Monthly Performance Analysis</h3>
-                                <p>Regular financial health checks with detailed reports and insights to drive strategic business growth.</p>
-                                <ul class="service-features">
-                                    <li>P&L statement analysis</li>
-                                    <li>Cash flow monitoring</li>
-                                    <li>KPI tracking & reporting</li>
-                                    <li>Strategic recommendations</li>
-                                </ul>
-                                <a href="#contact" class="btn-service">Learn More</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <p class="breadcrumb-subtitle">Comprehensive tax and financial solutions tailored to your business needs — combining expertise, dedication, and results.</p>
+        </div>
+    </section>
+
+    <!-- Services Grid -->
+    <section class="services-section">
+        <div class="container">
+            <div class="section-header reveal">
+                <div class="section-subtitle">WHAT WE OFFER</div>
+                <h2 class="section-title">End-to-End Tax & Financial Services</h2>
+                <p class="section-description">From audit support to strategic planning, we provide everything your business needs to stay compliant and grow confidently.</p>
             </div>
-        </section>
-        
-        <!-- CTA Section -->
-        <section class="cta-section" id="contact">
-            <div class="container">
-                <div class="cta-content">
-                    <h2>Ready to Get Started?</h2>
-                    <p>
-                        Let us handle your tax and financial needs while you focus on growing your business. 
-                        Schedule a free consultation to discover how we can help.
+
+            <div class="row g-4">
+
+                <!-- Service 1 -->
+                <div class="col-lg-4 col-md-6 reveal">
+                    <div class="service-card">
+                        <div class="service-icon-wrap">
+                            <span class="service-num-badge">01</span>
+                            <i class="fas fa-file-invoice"></i>
+                        </div>
+                        <div class="service-body">
+                            <h3>Tax Audit & Financial Reporting</h3>
+                            <p>Comprehensive audit services ensuring accuracy, compliance, and transparent financial reporting for your business.</p>
+                            <ul class="service-features">
+                                <li>Complete audit preparation</li>
+                                <li>Financial statement review</li>
+                                <li>Compliance verification</li>
+                                <li>Risk assessment & mitigation</li>
+                            </ul>
+                            <a href="https://wa.me/918078584557?text=Hi%2C%20I%20need%20to%20know%20more%20about%20Tax%20Audit%20%26%20Financial%20Reporting" target="_blank" class="btn-whatsapp">
+                                <i class="fab fa-whatsapp"></i> WhatsApp Now
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="col-lg-4 col-md-6 reveal">
+                    <div class="service-card">
+                        <div class="service-icon-wrap">
+                            <span class="service-num-badge">02</span>
+                            <i class="fas fa-search-dollar"></i>
+                        </div>
+                        <div class="service-body">
+                            <h3>GST Audit</h3>
+                            <p>Expert GST audit services to ensure your business maintains full compliance with goods and services tax regulations.</p>
+                            <ul class="service-features">
+                                <li>GST return verification</li>
+                                <li>Input tax credit reconciliation</li>
+                                <li>Compliance audit support</li>
+                                <li>Documentation review</li>
+                            </ul>
+                            <a href="https://wa.me/918078584557?text=Hi%2C%20I%20need%20to%20know%20more%20about%20GST%20Audit" target="_blank" class="btn-whatsapp">
+                                <i class="fab fa-whatsapp"></i> WhatsApp Now
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="col-lg-4 col-md-6 reveal">
+                    <div class="service-card">
+                        <div class="service-icon-wrap">
+                            <span class="service-num-badge">03</span>
+                            <i class="fas fa-clipboard-check"></i>
+                        </div>
+                        <div class="service-body">
+                            <h3>GST Registration & Filing</h3>
+                            <p>Hassle-free GST registration and timely filing services to keep your business compliant and penalty-free.</p>
+                            <ul class="service-features">
+                                <li>New GST registration</li>
+                                <li>Monthly / quarterly filing</li>
+                                <li>Amendment support</li>
+                                <li>Cancellation assistance</li>
+                            </ul>
+                            <a href="https://wa.me/918078584557?text=Hi%2C%20I%20need%20to%20know%20more%20about%20GST%20Registration%20%26%20Filing" target="_blank" class="btn-whatsapp">
+                                <i class="fab fa-whatsapp"></i> WhatsApp Now
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Service 4 -->
+                <div class="col-lg-4 col-md-6 reveal">
+                    <div class="service-card">
+                        <div class="service-icon-wrap">
+                            <span class="service-num-badge">04</span>
+                            <i class="fas fa-file-signature"></i>
+                        </div>
+                        <div class="service-body">
+                            <h3>Income Tax Registration & Filing</h3>
+                            <p>Complete income tax solutions for individuals and businesses, ensuring maximum deductions and timely compliance.</p>
+                            <ul class="service-features">
+                                <li>PAN / TAN registration</li>
+                                <li>ITR filing (all forms)</li>
+                                <li>Tax planning strategies</li>
+                                <li>Refund processing</li>
+                            </ul>
+                            <a href="https://wa.me/918078584557?text=Hi%2C%20I%20need%20to%20know%20more%20about%20Income%20Tax%20Registration%20%26%20Filing" target="_blank" class="btn-whatsapp">
+                                <i class="fab fa-whatsapp"></i> WhatsApp Now
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Service 5 -->
+                <div class="col-lg-4 col-md-6 reveal">
+                    <div class="service-card">
+                        <div class="service-icon-wrap">
+                            <span class="service-num-badge">05</span>
+                            <i class="fas fa-hand-holding-usd"></i>
+                        </div>
+                        <div class="service-body">
+                            <h3>TDS & TCS Filing</h3>
+                            <p>Accurate TDS and TCS computation, deduction, and filing services to avoid penalties and ensure compliance.</p>
+                            <ul class="service-features">
+                                <li>TDS calculation & deduction</li>
+                                <li>Quarterly return filing</li>
+                                <li>Form 16 / 16A issuance</li>
+                                <li>Correction & rectification</li>
+                            </ul>
+                            <a href="https://wa.me/918078584557?text=Hi%2C%20I%20need%20to%20know%20more%20about%20TDS%20%26%20TCS%20Filing" target="_blank" class="btn-whatsapp">
+                                <i class="fab fa-whatsapp"></i> WhatsApp Now
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Service 6 -->
+                <div class="col-lg-4 col-md-6 reveal">
+                    <div class="service-card">
+                        <div class="service-icon-wrap">
+                            <span class="service-num-badge">06</span>
+                            <i class="fas fa-project-diagram"></i>
+                        </div>
+                        <div class="service-body">
+                            <h3>Project Report Preparation</h3>
+                            <p>Detailed project reports for loans, investments, and business planning with comprehensive financial projections.</p>
+                            <ul class="service-features">
+                                <li>Feasibility analysis</li>
+                                <li>Financial projections</li>
+                                <li>Market research integration</li>
+                                <li>Loan proposal support</li>
+                            </ul>
+                            <a href="https://wa.me/918078584557?text=Hi%2C%20I%20need%20to%20know%20more%20about%20Project%20Report%20Preparation" target="_blank" class="btn-whatsapp">
+                                <i class="fab fa-whatsapp"></i> WhatsApp Now
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Service 7 -->
+                <div class="col-lg-4 col-md-6 reveal">
+                    <div class="service-card">
+                        <div class="service-icon-wrap">
+                            <span class="service-num-badge">07</span>
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <div class="service-body">
+                            <h3>Partnership Registration</h3>
+                            <p>Complete partnership firm registration services including deed drafting and statutory compliance setup.</p>
+                            <ul class="service-features">
+                                <li>Partnership deed drafting</li>
+                                <li>Registration with authorities</li>
+                                <li>PAN & bank account setup</li>
+                                <li>Compliance guidance</li>
+                            </ul>
+                            <a href="https://wa.me/918078584557?text=Hi%2C%20I%20need%20to%20know%20more%20about%20Partnership%20Registration" target="_blank" class="btn-whatsapp">
+                                <i class="fab fa-whatsapp"></i> WhatsApp Now
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Service 8 -->
+                <div class="col-lg-4 col-md-6 reveal">
+                    <div class="service-card">
+                        <div class="service-icon-wrap">
+                            <span class="service-num-badge">08</span>
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <div class="service-body">
+                            <h3>Book Keeping Services</h3>
+                            <p>Professional bookkeeping services to maintain accurate financial records and support informed business decisions.</p>
+                            <ul class="service-features">
+                                <li>Daily transaction recording</li>
+                                <li>Account reconciliation</li>
+                                <li>Financial statements</li>
+                                <li>Payroll management</li>
+                            </ul>
+                            <a href="https://wa.me/918078584557?text=Hi%2C%20I%20need%20to%20know%20more%20about%20Book%20Keeping%20Services" target="_blank" class="btn-whatsapp">
+                                <i class="fab fa-whatsapp"></i> WhatsApp Now
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Service 9 -->
+                <div class="col-lg-4 col-md-6 reveal">
+                    <div class="service-card">
+                        <div class="service-icon-wrap">
+                            <span class="service-num-badge">09</span>
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="service-body">
+                            <h3>Monthly Performance Analysis</h3>
+                            <p>Regular financial health checks with detailed reports and insights to drive strategic business growth.</p>
+                            <ul class="service-features">
+                                <li>P&L statement analysis</li>
+                                <li>Cash flow monitoring</li>
+                                <li>KPI tracking & reporting</li>
+                                <li>Strategic recommendations</li>
+                            </ul>
+                            <a href="https://wa.me/918078584557?text=Hi%2C%20I%20need%20to%20know%20more%20about%20Monthly%20Performance%20Analysis" target="_blank" class="btn-whatsapp">
+                                <i class="fab fa-whatsapp"></i> WhatsApp Now
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Not Sure Which Service You Need?</h2>
+            <p>
+                Talk to our experts today — we'll guide you to the right solution for your business.
+                First consultation is completely free.
+            </p>
+            <a href="https://wa.me/918078584557?text=Hi%2C%20I%20would%20like%20to%20book%20a%20free%20consultation%20with%20TaxBuzz%20Business%20Solution" target="_blank" class="btn-cta">
+                <i class="fab fa-whatsapp me-2"></i>Book Free Consultation
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <img src="logo.jpeg" alt="TaxBuzz Business Solution Logo" class="footer-logo">
+                    <div class="footer-brand">TaxBuzz Business Solution</div>
+                    <p class="footer-text">
+                        Your trusted partner in tax planning and financial optimization. We're here to make taxes simple, strategic, and stress-free.
                     </p>
-                    <a href="taxbuzz.html#contact" class="btn-primary-cta">Book Free Consultation</a>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <div class="footer-links">
+                        <h5>Quick Links</h5>
+                        <ul>
+                            <li><a href="about.html">About Us</a></li>
+                            <li><a href="services.html">Services</a></li>
+                            <li><a href="index.html#features">Features</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <div class="footer-links">
+                        <h5>Services</h5>
+                        <ul>
+                            <li><a href="services.html">Tax Audit</a></li>
+                            <li><a href="services.html">GST Filing</a></li>
+                            <li><a href="services.html">Income Tax</a></li>
+                            <li><a href="services.html">TDS/TCS</a></li>
+                            <li><a href="services.html">Book Keeping</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <div class="footer-links">
+                        <h5>Contact Info</h5>
+                        <ul>
+                            <li><a href="tel:+918078584557"><i class="fas fa-phone me-2"></i>+91 8078584557</a></li>
+                            <li><a href="tel:+919048266386"><i class="fas fa-phone me-2"></i>+91 9048266386</a></li>
+                            <li><a href="mailto:taxbuzzsolution@gmail.com"><i class="fas fa-envelope me-2"></i>taxbuzzsolution@gmail.com</a></li>
+                            <li style="color: var(--text-gray);"><i class="fas fa-map-marker-alt me-2"></i>Melakkam, Manjeri, Kerala – 676123</li>
+                        </ul>
+                        <div class="footer-map mt-3">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3914.843978758795!2d76.11562577482336!3d11.12499538904573!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba637749603159b%3A0x891ee4aa80b6ea38!2sTax%20Buzz%20Business%20Solution!5e0!3m2!1sen!2sin!4v1770138618999!5m2!1sen!2sin" allowfullscreen="" loading="lazy"></iframe>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </section>
-        
-        <!-- Footer -->
-      <footer id="about">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-4 mb-4">
-                        <div class="d-flex align-items-center mb-3">
-                            <img src="logo.jpeg" alt="TaxBuzz Logo" class="footer-logo me-3">
-                            <div class="footer-brand">TaxBuzz</div>
-                        </div>
-                        <p style="color: rgba(255, 253, 244, 0.7); max-width: 350px;">
-                            Your trusted partner in tax planning and financial optimization. We're here to make 
-                            taxes simple, strategic, and stress-free.
-                        </p>
-                        <div class="social-links">
-                            <a href="#"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#"><i class="fab fa-twitter"></i></a>
-                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                            <a href="#"><i class="fab fa-instagram"></i></a>
-                        </div>
-                    </div>
-                    <div class="col-lg-2 col-md-6 mb-4">
-                        <div class="footer-links">
-                            <h5>Pages</h5>
-                            <ul>
-                                <li><a href="#about">About Us</a></li>
-                                <li><a href="#services">Services</a></li>
-                                  <li><a href="#contact">Contact</a></li>
-                               
-                            </ul>
-                        </div>
-                    </div>
-                  
-                  
-                    <div class="col-lg-2 col-md-6 mb-4">
-                        <div class="footer-links">
-                            <h5>Contact</h5>
-                            <ul>
-                               
-                                 <li><a href="tel:+918078584557">+91 8078584557</a></li>
-                                  <li>  <a href="mailto:taxbuzzsolution@gmail.com">taxbuzzsolution@gmail.com</a>
-                              </li>
-                           
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-2 col-md-6 mb-4">
-                        <div class="footer-links">
-                          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3914.843978758795!2d76.11562577482336!3d11.12499538904573!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba637749603159b%3A0x891ee4aa80b6ea38!2sTax%20Buzz%20Business%20Solution!5e0!3m2!1sen!2sin!4v1770138618999!5m2!1sen!2sin" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-               
-                        </div>
-                    </div>
-                      </div>
-                <div class="copyright">
-                    <p>&copy; 2024 TaxBuzz. All rights reserved. | Designed with <a href="calio.co.in" style="text-decoration: none; color: rgba(103, 103, 103, 0.3);">Calio</a></p>
-                </div>
+            <div class="copyright">
+                <p>&copy; 2024 TaxBuzz Business Solution. All rights reserved. | Designed with <a href="https://calio.co.in">Calio</a></p>
             </div>
-        </footer>
-    </div>
-    
-    <!-- Bootstrap 5 JS -->
+        </div>
+    </footer>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    
-    <!-- Custom JavaScript -->
     <script>
-        // Smooth scrolling for navigation links
+        // Scroll reveal
+        const reveals = document.querySelectorAll('.reveal');
+        function revealOnScroll() {
+            reveals.forEach(el => {
+                const top = el.getBoundingClientRect().top;
+                if (top < window.innerHeight - 100) el.classList.add('active');
+            });
+        }
+        window.addEventListener('scroll', revealOnScroll);
+        revealOnScroll();
+
+        // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
+            anchor.addEventListener('click', function(e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                    
-                    // Close mobile menu if open
-                    const navbarCollapse = document.querySelector('.navbar-collapse');
-                    if (navbarCollapse.classList.contains('show')) {
-                        navbarCollapse.classList.remove('show');
-                    }
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    const nav = document.querySelector('.navbar-collapse');
+                    if (nav.classList.contains('show')) nav.classList.remove('show');
                 }
             });
         });
-        
-        // Scroll reveal animation
-        const reveals = document.querySelectorAll('.reveal');
-        
-        function revealOnScroll() {
-            for (let i = 0; i < reveals.length; i++) {
-                const windowHeight = window.innerHeight;
-                const elementTop = reveals[i].getBoundingClientRect().top;
-                const elementVisible = 150;
-                
-                if (elementTop < windowHeight - elementVisible) {
-                    reveals[i].classList.add('active');
-                }
-            }
-        }
-        
-        window.addEventListener('scroll', revealOnScroll);
-        revealOnScroll(); // Check on load
     </script>
 </body>
 </html>
